@@ -9,10 +9,12 @@ var ViewModel = function() {
 		
 		
 	};
-
+	//method binded to clear the map of markers
 	self.hideMarkers = function(){
 		clearMarkers();
 	};
+
+	//this method checks if the string of the title of the location contains the elements of the query
 	self.Filter = function() {
 		clearMarkers();
 		currentMarkers=[];

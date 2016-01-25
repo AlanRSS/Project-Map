@@ -1,4 +1,4 @@
-
+//Collection of locations to be initialized when the map runs
 var MyLocations = [
 {
 	latitude : -8.811645,
@@ -27,12 +27,17 @@ var MyLocations = [
 	longitude: 13.2584397,
 	title: "Coconuts Restaurante"	
 }];
+// Initializing variables to store the map data
+var map;
 var markers= [];
 var length = MyLocations.length;
 var clearMarkers;
 var setMapOnAll;
 var setMapOn;
 var currentMarkers= [];
+
+
+//Initializing the map...
 function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -8.8105614, lng: 13.2340159},
@@ -40,11 +45,14 @@ function initMap() {
 
 
       });
+//Sets all markers down on the map
 setMapOnAll = function(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
   }
 }
+
+//Sets current selected array of markers on the map
 setMapOn = function (map) {
   for (var i = 0; i < currentMarkers.length; i++) {
     currentMarkers[i].setMap(map);
@@ -57,6 +65,7 @@ for (var i = 0; i < length; i++) {
     title: MyLocations[i].title
 	});
 }
+//Cleans the map of markers
 clearMarkers = function() {
   setMapOnAll(null);
 };
