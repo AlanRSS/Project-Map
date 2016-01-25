@@ -1,0 +1,27 @@
+
+#SideButton{
+
+	background-color: #FFF;
+	border-radius: 100%;
+	width: 60px;
+	height: 60px;
+	padding-top: 20px;
+	text-align: center;
+
+	
+
+}
+#SideBar{
+	
+	position: fixed;
+	z-index: 10;
+	display: block;
+	/*flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;*/
+	right: 0;
+	padding : 40px;
+	width: 400px;
+	 
+
+}
