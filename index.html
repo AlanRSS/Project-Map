@@ -6,36 +6,42 @@
     <link rel="stylesheet" type="text/css" href="style/css/site.css">
     <link rel="stylesheet" type="text/css" href="style/css/bootstrap.min.css">
     <style type = "text/css">
-      html, body { height: 100%; margin: 0; padding: 0; }
-      #map { height: 100%; }
+    html, body { height: 100%; margin: 0; padding: 0; }
+    #map { height: 100%; }
     </style>
   </head>
   <body>
-  <div class="row">
-    <div id="SideBar">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button class="btn btn-default" data-bind= "click: Filter" type="button">Search</button>
-            </span>
-            <input type="text" class="form-control" placeholder="Search for..." data-bind="value: searchVal">
-            <span class="input-group-btn">
-              <button class="btn btn-default" data-bind= "click: hideMarkers" type="button">Clear</button>
-            </span>
-
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-      </div>
-    </div>
-  </div>
+    <div class="SearchBar">
+      <div class="input-group row">
+        <span class="input-group-btn dropdown">
+          <button class="btn btn-default" data-toggle="dropdown"data-bind= "click: FilterB" type="button">Search</button>
+        </span>
+        <input type="text" class="form-control" placeholder="Search for..." data-bind='value: searchVal, textInput: Filter'></input>
+        <span class="input-group-btn">
+          <button class="btn btn-default" data-bind= "click: hideMarkers" type="button">Clear</button>
+        </span>
+      </div> 
+      <ul id="listing" class="list-group" data-bind="foreach: locations">
+        <li class="list-group-item listie" data-bind="text: title, click: $parent.info"></li>
+      </ul>
+    
+    </div> 
     <div id = "map"></div>
+    <img src="https://www.flickr.com/photos/79393434@N00/24537615502">
+    <script>
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -8.8105614, lng: 13.2340159},
+        zoom: 15
+      });
+    }
+    </script>
     <script src = "scripts/lib/knockout-3.2.0.js"></script>
     <script src = "scripts/lib/jquery.js"></script>
+    <script src = "scripts/lib/bootstrap.min.js"></script>
     <script src = "scripts/script.js"></script>
     <script src = "scripts/model.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZLt3Jg5i1pZy6NrBQUlyopKxuMZYUv8A&callback=initMap">
-    </script>
-   
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZLt3Jg5i1pZy6NrBQUlyopKxuMZYUv8A&callback=initMap"></script>
+
   </body>
 </html>

@@ -1,4 +1,7 @@
-
+.gm-style-iw{
+max-height: 400px !important;
+overflow-y : auto !important;
+}
 #SideButton{
 
 	background-color: #FFF;
@@ -9,19 +12,27 @@
 	text-align: center;
 
 	
-
 }
-#SideBar{
+.SearchBar{
 	
 	position: fixed;
 	z-index: 10;
 	display: block;
-	/*flex-direction: column;
-	justify-content: center;
-	align-items: flex-end;*/
 	right: 0;
 	padding : 40px;
 	width: 400px;
-	 
 
+	
+}
+#listing{
+	position: fixed;
+	z-index: 10;
+	display: block;
+	right: 0;
+	width: 400px;
+	/*visibility: hidden;*/
+}
+.listie:hover{
+	background-color: #AFB1C1;
+	color: #fFf;
 }
