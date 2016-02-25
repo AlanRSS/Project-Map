@@ -1,38 +1,62 @@
 .gm-style-iw{
-max-height: 400px !important;
-overflow-y : auto !important;
+	max-height: 600px !important;
+	overflow-y : auto !important;
 }
-#SideButton{
 
+.gm-style-iw > div {
+	overflow-y : hidden !important;
+}
+
+#SideButton{
 	background-color: #FFF;
 	border-radius: 100%;
 	width: 60px;
 	height: 60px;
 	padding-top: 20px;
 	text-align: center;
-
-	
 }
 .SearchBar{
-	
 	position: fixed;
 	z-index: 10;
 	display: block;
 	right: 0;
 	padding : 40px;
 	width: 400px;
-
-	
 }
+
 #listing{
 	position: fixed;
 	z-index: 10;
 	display: block;
-	right: 0;
+	left: 0;
 	width: 400px;
+	height: 100%;
+	background-color: #fff;
+	overflow: auto;
 	/*visibility: hidden;*/
 }
+
 .listie:hover{
 	background-color: #AFB1C1;
-	color: #fFf;
+	color: #fff;	
+}
+
+.list-group-item{
+	font-size: 20px;
+	text-align: center;
+}
+.box{
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.icons{
+	padding : 15px;
+}
+.filterOff{
+	background-color: #F7554B;
+}
+.scrollFix {
+    line-height: 1.35;
+    overflow: hidden;
+    white-space: nowrap;
 }

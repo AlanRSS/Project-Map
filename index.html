@@ -11,21 +11,34 @@
     </style>
   </head>
   <body>
+  <div id="listing" >
+   <div class="row box">
+          <div class="icons col-sm-2"><img class ="img-responsive" src="images/italy.png" data-bind="value: ItalyOn , click: toggleType"/></div>
+          <div class="icons col-sm-2"><img class ="img-responsive" src="images/ang.png" data-bind="value: PizzaOn , click: toggleType"/></div>
+          <div class="icons col-sm-2"><img class ="img-responsive" src="images/medit.png" data-bind="value: MediOn , click: toggleType"/></div>
+          <div class="icons col-sm-2"><img class ="img-responsive" src="images/pizza.png" data-bind="value: AfricaOn , click: toggleType"/></div>
+          <div class="icons col-sm-2"><img class ="img-responsive" src="images/sushi.png" data-bind="value: SushiOn , click: toggleType"/></div>
+        </div>
+    
+    <div class="row ">
+    <ul class="list-group" data-bind="foreach: locations">
+       
+        <li class="list-group-item listie" data-bind="text: title, click: $parent.info"></li>
+    </ul>
+    </div>
+    </div>
     <div class="SearchBar">
       <div class="input-group row">
-        <span class="input-group-btn dropdown">
-          <button class="btn btn-default" data-toggle="dropdown"data-bind= "click: FilterB" type="button">Search</button>
-        </span>
-        <input type="text" class="form-control" placeholder="Search for..." data-bind='value: searchVal, textInput: Filter'></input>
+        <input type="text" class="form-control" placeholder="Search for..." data-bind='value: searchVal, textInput: filter'></input>
         <span class="input-group-btn">
-          <button class="btn btn-default" data-bind= "click: hideMarkers" type="button">Clear</button>
+          <button class="btn btn-default" data-bind= "click: clearQuery" type="button">Clear</button>
         </span>
-      </div> 
-      <ul id="listing" class="list-group" data-bind="foreach: locations">
-        <li class="list-group-item listie" data-bind="text: title, click: $parent.info"></li>
-      </ul>
-    
+      </div>
+       
     </div> 
+     
+    
+    
     <div id = "map"></div>
     <img src="https://www.flickr.com/photos/79393434@N00/24537615502">
     <script>
@@ -39,8 +52,10 @@
     <script src = "scripts/lib/knockout-3.2.0.js"></script>
     <script src = "scripts/lib/jquery.js"></script>
     <script src = "scripts/lib/bootstrap.min.js"></script>
+    <script src = "scripts/lib/data.js"></script>
     <script src = "scripts/script.js"></script>
     <script src = "scripts/model.js"></script>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZLt3Jg5i1pZy6NrBQUlyopKxuMZYUv8A&callback=initMap"></script>
 
   </body>
