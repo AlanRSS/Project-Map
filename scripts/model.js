@@ -243,14 +243,14 @@ $(function() {
             if (self.toggleDisplayBool == false){
                 $('#listing').css('display', 'block');
                 $('.search-bar').css('display', 'block');
-                $('#menu-toggle').html('hide')
+                $('#menu-toggle').html('Hide Controls')
                 self.toggleDisplayBool = true;
             }
             else
             {   
                 $('#listing').css('display', 'none');
                 $('.search-bar').css('display', 'none');
-                $('#menu-toggle').html('show');
+                $('#menu-toggle').html('Show Controls');
                 self.toggleDisplayBool = false;
             }
         }
