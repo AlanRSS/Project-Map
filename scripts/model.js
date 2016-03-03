@@ -11,28 +11,28 @@ $(function() {
         var currentMarkers = [];
 
         self.locations = ko.observableArray([{
-            title: "Loading..."
+            title: 'Loading...'
         }]);
         self.searchVal = ko.observable();
         self.ItalyOn = ko.observable({
             bool: true,
-            type: "Italian"
+            type: 'Italian'
         });
         self.PizzaOn = ko.observable({
             bool: true,
-            type: "Africano"
+            type: 'Africano'
         });
         self.MediOn = ko.observable({
             bool: true,
-            type: "Mediteranian"
+            type: 'Mediteranian'
         });
         self.AfricaOn = ko.observable({
             bool: true,
-            type: "Pizza"
+            type: 'Pizza'
         });
         self.SushiOn = ko.observable({
             bool: true,
-            type: "Japonês"
+            type: 'Japonês'
         });
 
 
@@ -49,8 +49,8 @@ $(function() {
 
         //This is a Function deletes search query
         self.clearQuery = function() {
-            self.filter("");
-            self.searchVal("");
+            self.filter('');
+            self.searchVal('');
         };
 
         //Cleans the map of all markers
@@ -58,7 +58,7 @@ $(function() {
             currentMarkers = [];
             if (allMarkers.length > 0) {
                 for (var i = allMarkers.length - 1; i >= 0; i--) {
-                    allMarkers[i].setMap(null);
+                    allMarkers[i].setVisible(false);
                 }
             }
         };
@@ -83,7 +83,7 @@ $(function() {
                     and adds the markers according to the result to the current markers that will be displayed on the map*/
                     for (var i = allMarkers.length - 1; i >= 0; i--) {
                         if (allMarkers[i].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                            allMarkers[i].setMap(map);
+                            allMarkers[i].setVisible(true);
                             currentMarkers.push(allMarkers[i]);
                         }
                     }
@@ -92,7 +92,7 @@ $(function() {
                 } else {
                     self.clearMarkers();
                     for (var i = allMarkers.length - 1; i >= 0; i--) {
-                        allMarkers[i].setMap(map);
+                        allMarkers[i].setVisible(true);
                         currentMarkers.push(allMarkers[i]);
                     }
                     self.locations(currentMarkers);
@@ -110,10 +110,10 @@ $(function() {
                 //Cycling through all markers to exclude the restaurants with the type selected
                 for (var i = allMarkers.length - 1; i >= 0; i--) {
                     if (allMarkers[i].type == event.target.value.type) {
-                        allMarkers[i].setMap();
+                        allMarkers[i].setVisible(false);
 
                         //Styling for awesome user experience
-                        $(event.target).parent().addClass("filter-off");
+                        $(event.target).parent().addClass('filter-off');
                         for (var z = currentMarkers.length - 1; z >= 0; z--) {
                             if (currentMarkers[z].title == allMarkers[i].title) {
                                 currentMarkers.splice(z, 1);
@@ -129,12 +129,12 @@ $(function() {
             } else {
 
                 //Styling Off
-                $(event.target).parent().removeClass("filter-off");
+                $(event.target).parent().removeClass('filter-off');
 
                 //Cycling through all markers to include the restaurants with the type selected
                 for (var i = allMarkers.length - 1; i >= 0; i--) {
                     if (allMarkers[i].type == event.target.value.type) {
-                        allMarkers[i].setMap(map);
+                        allMarkers[i].setVisible(true);
                         currentMarkers.push(allMarkers[i]);
                     }
                 }
@@ -226,14 +226,14 @@ $(function() {
             if ( infoMarker != marker) {
                 marker.infoBool = true;
                 var title = marker.title;
-                var contentStr = "";
+                var contentStr = '';
                 infoWindow.setContent('<img src= "images/Loader.gif">');
                 infoWindow.open(map, marker);
                 self.pullFourSqInfo(title, contentStr);
                 infoMarker = marker;
             } else {
                 infoWindow.close();
-                infoMarker = " ";
+                infoMarker = '';
             }
              
         }

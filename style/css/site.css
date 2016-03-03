@@ -1,13 +1,13 @@
 @media screen and (min-width: 1000px) {
-	.gm-style-iw{
+	.gm-style-iw {
 		overflow-y : auto !important;
 	}
 
-	.gm-style-iw > div{
+	.gm-style-iw > div {
 		overflow-y : hidden !important;
 	}
 
-	#side-button{
+	#side-button {
 		background-color: #FFF;
 		border-radius: 100%;
 		width: 60px;
@@ -16,7 +16,7 @@
 		text-align: center;
 	}
 
-	.search-bar{
+	.search-bar {
 		position: fixed;
 		z-index: 10;
 		display: none;
@@ -25,7 +25,7 @@
 		width: 300px;
 	}
 
-	#listing{
+	#listing {
 		position: fixed;
 		z-index: 10;
 		display: none;
@@ -37,47 +37,51 @@
 		overflow-y: auto;
 		overflow-x:hidden;
 	}
-	#menu-toggle{
+	#menu-toggle {
 		display: block;
 		z-index: 10;
 		position: fixed;
 		top: 40px;
 		right: 40px;
 	}
-	.list-group-item{
+	.list-group-item {
 		font-size: 20px;
 		text-align: center;
 	}
-	.box{
-		padding-right: 15px;
-		padding-left: 15px;
+	.box {
+		display: flex;
+		background-color: #fff;
+        border: 1px solid #ddd;
+        
 	}
-	.icons{
+	.icons {
 		padding : 15px;
 	}
-	.scroll-fix{
+	.scroll-fix {
 		line-height: 1.35;
 		overflow: hidden;
 		white-space: nowrap;
 	}
-	.info-window{
+	.info-window {
 		max-width: 400px;
 		max-height: 300px;
 		overflow-y: auto;
 	}
-	#menu-show{
+	#menu-show {
 		display: none;
 	}
 }
 @media screen and (max-width: 999px) {
-	#listing{
+	#listing {
 		display: none;
 		right: 50px;
 		top: 140px;
 		position: fixed;
 		z-index: 10;
+		width: 220px;
+		
 	}
-	.search-bar{
+	.search-bar {
 		display: none;
 		position: fixed;
     	width: 220px;
@@ -85,12 +89,12 @@
     	top: 106px;
     	z-index: 10;
 	}
-	.info-window{
+	.info-window {
 		max-width: 150px;
 		max-height: 200px;
 		overflow-y: auto;
 	}
-	#menu-toggle{
+	#menu-toggle {
 		display: block;
 		z-index: 10;
 		position: fixed;
@@ -98,18 +102,26 @@
 		right: 60px;
 
 	}
-	.imginfo{
-		max-width: 200px !important;
-	}
-	.box{
+	
+	.box {
 		display: flex;
 		background-color: #fff;
-	}
+        border: 1px solid #ddd;
+        width: 220px;
+    }
+    .col-sm-2{
+    	padding-right: 4px !important;
+    	padding-left: 4px !important;
+    }
+    .list-group {
+    	height: 200px;
+    	overflow-y: auto;
+    }
 }
-.filter-off{
+.filter-off {
 		background-color: #F7554B;
-	}
-.listie:hover{
+}
+.listie:hover {
 		background-color: #AFB1C1;
 		color: #fff;	
-	}
+}

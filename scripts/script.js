@@ -1,13 +1,13 @@
 //************ VARIABLES ************
 //Keeps the data of all markers
-var allMarkers = [];
-var map;
-var info;
-var infoMarker;
-var infoBool = false;
-var infoWindow;
-var toggleBounce;
-var initMap;
+var allMarkers = [],
+    map,
+    info,
+    infoMarker,
+    infoBool = false,
+    infoWindow,
+    toggleBounce,
+    initMap;
 
 //Initializing google map 
 $(function() {
