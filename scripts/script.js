@@ -3,6 +3,8 @@
 var allMarkers = [];
 var map;
 var info;
+var infoMarker;
+var infoBool = false;
 var infoWindow;
 var toggleBounce;
 var initMap;
@@ -38,18 +40,16 @@ $(function() {
                 map: map,
                 animation: google.maps.Animation.DROP,
                 title: title,
-                infoBool: false,
                 type: type
             }));
-            infoWindow = new google.maps.InfoWindow({
-                content: null,
-                Width: 700
-            });
+            
 
             //triggers the information window pop open and bounce animation of the markers
             function markerClick() {
                 info(marker);
-                toggleBounce(marker);
+                if(infoMarker == this) {
+                     toggleBounce(marker);
+                }
             }
 
             //adding an on click listener for the markers to trigger the masterClick Function
@@ -73,5 +73,8 @@ $(function() {
     };
     setTimeout(function() {
         setMapOnAll(map);
+        infoWindow = new google.maps.InfoWindow({
+                content: null
+            });
     }, 2000);
 });

@@ -113,7 +113,7 @@ $(function() {
                         allMarkers[i].setMap();
 
                         //Styling for awesome user experience
-                        $(event.target).parent().addClass("filterOff");
+                        $(event.target).parent().addClass("filter-off");
                         for (var z = currentMarkers.length - 1; z >= 0; z--) {
                             if (currentMarkers[z].title == allMarkers[i].title) {
                                 currentMarkers.splice(z, 1);
@@ -129,7 +129,7 @@ $(function() {
             } else {
 
                 //Styling Off
-                $(event.target).parent().removeClass("filterOff");
+                $(event.target).parent().removeClass("filter-off");
 
                 //Cycling through all markers to include the restaurants with the type selected
                 for (var i = allMarkers.length - 1; i >= 0; i--) {
@@ -156,7 +156,7 @@ $(function() {
                 marker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(function() {
                     marker.setAnimation(null);
-                }, 2100);
+                }, 800);
             }
         }
 
@@ -172,7 +172,7 @@ $(function() {
                     the venue Id is then used to call the Photo request Function*/
                     var ref = data.response.venues[0];
 
-                    contentStr += '<div class="scrollFix">' +
+                    contentStr += '<div class="scroll-fix info-window">' +
                         '<h2>' + ref.name + '</h2>' +
                         '<p><h4>' + ref.categories[0].name + '</h4></p>';
                     for (var i = ref.location.formattedAddress.length - 1; i >= 0; i--) {
@@ -183,7 +183,8 @@ $(function() {
                     self.pullFourSqPhotos(ref.id, contentStr);
                 },
                 error: function(jqhxr, status, error) {
-                    contentStr += '<div class="row">Error Loading the request</div>';
+                    contentStr += '<div class="scroll-fix info-window"><h2>Error Loading the request</h2></br><h3>Please Try again</h3></div>';
+                    infoWindow.setContent(contentStr);
                 }
             });
         }
@@ -199,35 +200,15 @@ $(function() {
                     contentStr += '<div class="row">';
                     //Maximum nuumber of photos pulled to 3 so we dont overpopulate the information window
                     for (var i = 3 - 1; i >= 0; i--) {
-                        var photourl = '<div class= "box"><hr> <img src="' + ref.items[i].prefix + 'cap300' + ref.items[i].suffix + '"/></div>';
+                        var photourl = '<div class= "box"><hr> <img class="img-responsive imginfo" src="' + ref.items[i].prefix + 'cap300' + ref.items[i].suffix + '"/></div>';
                         contentStr += photourl;
                     }
                     contentStr += '</div>';
                     infoWindow.setContent(contentStr);
                 },
                 error: function(jqhxr, status, error) {
-                    contentStr += '<div class="row">Error Loading the request</div>';
-                }
-            });
-        }
+                    contentStr += '<h2>Error Loading the pictures</h2></br><h3>Please Try again</h3></div>';
 
-        //This Function pulls photos from Flickr using the query(marker title) but due to the lack of consistent data on Flickr from my country I opted to exclusively use 4square
-        self.pullFlickr = function(query, contentStr) {
-            $.ajax({
-                url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=1b5ad63f3251fe5249199e1a3d291987&text=%22' + query + '%22&format=json&nojsoncallback=1',
-                async: 'false',
-                success: function(data) {
-                    if (data.photos.photo.length >= 3) {
-                        for (var i = 2; i >= 0; i--) {
-                            contentStr += '<div class = "imagebox"><img class="img-responsive" src= "https://farm' + data.photos.photo[i].farm + '.staticflickr.com/' + data.photos.photo[i].server + '/' + data.photos.photo[i].id + '_' + data.photos.photo[i].secret + '.jpg"></div>';
-                        }
-                    } else {
-                        contentStr += '<img class="img-responsive" BORDER="0" ALIGN="Left" src= "https://farm' + data.photos.photo[0].farm + '.staticflickr.com/' + data.photos.photo[0].server + '/' + data.photos.photo[0].id + '_' + data.photos.photo[0].secret + '.jpg">';
-                    }
-                    infoWindow.setContent(contentStr);
-                },
-                error: function(jqhxr, status, error) {
-                    contentStr += '<div class="row">Error Loading the request</div>';
                 }
             });
         }
@@ -235,23 +216,45 @@ $(function() {
         //This Function pull makes the calls off the AJAX functions, opens and closes the infoWindow it also contains a nice loader gif that keeps the user entertained while the data loads :P
         self.runInfo = function() {
             info(this);
-            toggleBounce(this);
+            if(infoMarker == this) {
+                toggleBounce(this);
+            }
         }
 
         info = function(marker) {
-            if (marker.infoBool == false) {
+           
+            if ( infoMarker != marker) {
                 marker.infoBool = true;
                 var title = marker.title;
                 var contentStr = "";
                 infoWindow.setContent('<img src= "images/Loader.gif">');
                 infoWindow.open(map, marker);
                 self.pullFourSqInfo(title, contentStr);
+                infoMarker = marker;
             } else {
                 infoWindow.close();
-                marker.infoBool = false;
+                infoMarker = " ";
+            }
+             
+        }
+        //************ DISPLAY ************
+        self.toggleDisplayBool = false;
+        self.toggleDisplay = function () {
+            if (self.toggleDisplayBool == false){
+                $('#listing').css('display', 'block');
+                $('.search-bar').css('display', 'block');
+                $('#menu-toggle').html('hide')
+                self.toggleDisplayBool = true;
+            }
+            else
+            {   
+                $('#listing').css('display', 'none');
+                $('.search-bar').css('display', 'none');
+                $('#menu-toggle').html('show');
+                self.toggleDisplayBool = false;
             }
         }
-
+        //************ RUNNING ************
         //calling the markers down on a set timeout to make sure the browser has loaded and populated the markers variables(avoid google not found error)
         setTimeout(function() {
             self.sortMarkerList(allMarkers);
@@ -261,8 +264,15 @@ $(function() {
             };
         }, 4000);
     };
-
-
-
-    ko.applyBindings(new ViewModel());
+    setTimeout(function() {
+        // if (typeof google !== 'undefined') {
+            ko.applyBindings(new ViewModel());
+        // }
+        // else {
+        //     console.log("Error Loading Google Maps - Data not Recieved");
+        //     $('#listing').hide();
+        //     $('.search-bar').hide();
+        //     $('#map').html('<h1>There was an error Loading Google Maps. Please check your internet connection or try again later.</h1>');
+        // }
+    }, 2000);
 });

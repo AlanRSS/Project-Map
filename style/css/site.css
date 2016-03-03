@@ -1,67 +1,118 @@
-.gm-style-iw{
-	max-height: 600px !important;
-	overflow-y : auto !important;
-}
+@media screen and (min-width: 1000px) {
+	.gm-style-iw{
+		overflow-y : auto !important;
+	}
 
-.gm-style-iw > div {
-	overflow-y : hidden !important;
-}
+	.gm-style-iw > div{
+		overflow-y : hidden !important;
+	}
 
-#SideButton{
-	background-color: #FFF;
-	border-radius: 100%;
-	width: 60px;
-	height: 60px;
-	padding-top: 20px;
-	text-align: center;
-}
+	#side-button{
+		background-color: #FFF;
+		border-radius: 100%;
+		width: 60px;
+		height: 60px;
+		padding-top: 20px;
+		text-align: center;
+	}
 
-.SearchBar{
-	position: fixed;
-	z-index: 10;
-	display: block;
-	right: 0;
-	padding : 40px;
-	width: 400px;
-}
+	.search-bar{
+		position: fixed;
+		z-index: 10;
+		display: block;
+		right: 0;
+		padding : 40px;
+		width: 400px;
+	}
 
-#listing{
-	position: fixed;
-	z-index: 10;
-	display: block;
-	left: 0;
-	width: 400px;
-	height: 100%;
-	background-color: #fff;
-	overflow: auto;
-	/*visibility: hidden;*/
+	#listing{
+		position: fixed;
+		z-index: 10;
+		display: block;
+		left: 0;
+		width: 25%;
+		height: 100%;
+		top: 0;
+		background-color: #fff;
+		overflow-y: auto;
+		overflow-x:hidden;
+
+	}
+
+	
+
+	.list-group-item{
+		font-size: 20px;
+		text-align: center;
+	}
+
+	.box{
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+
+	.icons{
+		padding : 15px;
+	}
+
+	
+
+	.scroll-fix{
+		line-height: 1.35;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	.info-window{
+		max-width: 400px;
+		max-height: 300px;
+		overflow-y: auto;
+	}
+	#menu-show{
+		display: none;
+	}
 }
+@media screen and (max-width: 999px) {
+	#listing{
+		display: none;
+		right: 50;
+		top: 140;
+		position: fixed;
+		z-index: 10;
+	}
+	.search-bar{
+		display: none;
+		position: fixed;
+    	width: 220px;
+    	right: 50;
+    	top: 106;
+    	z-index: 10;
+	}
+	.info-window{
+		max-width: 150px;
+		max-height: 200px;
+		overflow-y: auto;
+	}
+	#menu-toggle{
+		display: block;
+		z-index: 10;
+		position: fixed;
+		top: 60;
+		right: 60;
+
+	}
+	.imginfo{
+		max-width: 20px !important;
+	}
+	.box{
+		display: flex;
+		background-color: #fff;
+	}
+}
+.filter-off{
+		background-color: #F7554B;
+	}
 
 .listie:hover{
-	background-color: #AFB1C1;
-	color: #fff;	
-}
-
-.list-group-item{
-	font-size: 20px;
-	text-align: center;
-}
-
-.box{
-	padding-right: 15px;
-	padding-left: 15px;
-}
-
-.icons{
-	padding : 15px;
-}
-
-.filterOff{
-	background-color: #F7554B;
-}
-
-.scrollFix {
-    line-height: 1.35;
-    overflow: hidden;
-    white-space: nowrap;
-}
+		background-color: #AFB1C1;
+		color: #fff;	
+	}
