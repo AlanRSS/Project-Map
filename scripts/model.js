@@ -265,14 +265,15 @@ $(function() {
         }, 4000);
     };
     setTimeout(function() {
-        // if (typeof google !== 'undefined') {
+        if (typeof google !== 'undefined') {
             ko.applyBindings(new ViewModel());
-        // }
-        // else {
-        //     console.log("Error Loading Google Maps - Data not Recieved");
-        //     $('#listing').hide();
-        //     $('.search-bar').hide();
-        //     $('#map').html('<h1>There was an error Loading Google Maps. Please check your internet connection or try again later.</h1>');
-        // }
+        }
+        else {
+            console.log("Error Loading Google Maps - Data not Recieved");
+            $('#listing').hide();
+            $('.search-bar').hide();
+            $('#menu-toggle').hide();
+            $('#map').html('<h1>There was an error Loading Google Maps. Please check your internet connection or try again later.</h1>');
+        }
     }, 2000);
 });
