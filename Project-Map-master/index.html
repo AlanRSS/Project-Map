@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1' charset='utf-8'>
+    <title>Project Map</title>
+    <link rel='stylesheet' type='text/css' href='style/css/site.css'>
+    <link rel='stylesheet' type='text/css' href='style/css/bootstrap.min.css'>
+    <style type='text/css'>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <button class='btn-default btn' id='menu-toggle' data-bind='click: toggleDisplay'>Show Controls</button>
+    <div id='listing'>
+        <div class='box'>
+            <div class='icons col-sm-2'><img class='img-responsive imginfo' src='images/italy.png' data-bind='value: ItalyOn , click: toggleType' /></div>
+            <div class='icons col-sm-2'><img class='img-responsive imginfo' src='images/ang.png' data-bind='value: PizzaOn , click: toggleType' /></div>
+            <div class='icons col-sm-2'><img class='img-responsive imginfo' src='images/medit.png' data-bind='value: MediOn , click: toggleType' /></div>
+            <div class='icons col-sm-2'><img class='img-responsive imginfo' src='images/pizza.png' data-bind='value: AfricaOn , click: toggleType' /></div>
+            <div class='icons col-sm-2'><img class='img-responsive imginfo' src='images/sushi.png' data-bind='value: SushiOn , click: toggleType' /></div>
+        </div>
+        <div>
+            <ul class='list-group' data-bind='foreach: locations'>
+                <li class='list-group-item listie' data-bind='text: title, click: $parent.runInfo'></li>
+            </ul>
+        </div>
+    </div>
+    <div class='search-bar'>
+        <div class='input-group row'>
+            <input type='text' class='form-control' placeholder='Search for...' data-bind='value: searchVal, textInput: filter'>
+            <span class='input-group-btn'>
+          <button class='btn btn-default' data-bind= 'click: clearQuery' type='button'>Clear</button>
+        </span>
+        </div>
+    </div>
+    <div id='map'></div>
+    
+    <script src='scripts/lib/knockout-3.2.0.js'></script>
+    <script src='scripts/lib/jquery.js'></script>
+    <script src='scripts/script.js'></script>
+    <script src='scripts/lib/bootstrap.min.js'></script>
+    <script src='scripts/lib/data.js'></script>
+    <script src='scripts/model.js'></script>
+    <!--> using inline JS to make sure that the function exists before the script bellow loads<-->
+    <script>
+        googleError = function() {
+        console.log("Error Loading Google Maps - Data not Recieved");
+        $('#listing').hide();
+        $('.search-bar').hide();
+        $('#menu-toggle').hide();
+        $('#map').html('<h1>There was an error Loading Google Maps. Please check your internet connection or try again later.</h1>');
+    };
+    </script>
+    <script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBZLt3Jg5i1pZy6NrBQUlyopKxuMZYUv8A&callback=googleSuccess' onerror='googleError()'></script>
+</body>
+</html>
